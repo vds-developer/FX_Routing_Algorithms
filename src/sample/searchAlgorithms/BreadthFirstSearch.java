@@ -18,9 +18,6 @@ public class BreadthFirstSearch extends AbstractSearch {
 
     @Override
     public void search() {
-//        Point startPoint = this.sources[0];
-//        int currentX = startPoint.getX();
-//        int currentY = startPoint.getY();
         Queue<Point> pointLinkedList = new LinkedList<>();
         Queue<Point> destinationLinkedList = new LinkedList<>();
         for (Point p: this.sources) {
@@ -30,9 +27,9 @@ public class BreadthFirstSearch extends AbstractSearch {
             destinationLinkedList.add(p);
         }
         ///y x
-        System.out.println("Destination size " + destinationLinkedList.size());
-        System.out.println("Current list " + pointLinkedList.size());
-        System.out.println();
+//        System.out.println("Destination size " + destinationLinkedList.size());
+//        System.out.println("Current list " + pointLinkedList.size());
+//        System.out.println();
         int[][] neighbors = new int[][] {{-1, -1} , {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0,1}, {1, -1}, {1, 0}, {1, 1}};
         boolean found = false;
         while (!destinationLinkedList.isEmpty() && !pointLinkedList.isEmpty()) {
@@ -48,8 +45,6 @@ public class BreadthFirstSearch extends AbstractSearch {
                     pointLinkedList.add(new Point(nextX, nextY));
                     if (!isDestination(nextX, nextY)) visit(nextX, nextY);
                 }
-//                System.out.println("Destination size " + destinationLinkedList.size());
-//                System.out.println("Current list " + pointLinkedList.size());
                 System.out.println();
             }
         }

@@ -31,6 +31,7 @@ public class AnimationTimeLine {
     }
 
     public void autoPlay() {
+        if (timelineList.isEmpty()) return;
         Iterator<Timeline> iterator = timelineList.iterator();
         Timeline current = iterator.next();
         Timeline next;

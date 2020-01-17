@@ -57,6 +57,12 @@ public abstract class AbstractSearch {
 
     public boolean isVisited(int x, int y) {
         return CellType.VISITED == modelBoard[y][x];
+//                && modelBoard[y][x] != CellType.SOURCE;
+
+    }
+
+    public boolean isDestination(Point point) {
+        return isDestination(point.getX(), point.getY());
     }
 
     public boolean isDestination(int x, int y) {
