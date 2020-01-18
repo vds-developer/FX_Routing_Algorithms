@@ -1,12 +1,10 @@
 package sample.searchAlgorithms;
 
-import sample.Board;
-import sample.Point;
-import sun.awt.image.ImageWatched;
+import sample.board.Board;
+import sample.board.Point;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class BreadthFirstSearch extends AbstractSearch {
 

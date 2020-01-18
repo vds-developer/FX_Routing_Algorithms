@@ -1,14 +1,9 @@
 package sample.searchAlgorithms;
 
-import javafx.animation.Timeline;
 import javafx.scene.layout.GridPane;
-import sample.AnimationTimeLine;
-import sample.Board;
-import sample.Cell;
-import sample.Point;
+import sample.board.Board;
+import sample.board.Point;
 import sample.util.CellType;
-
-import java.util.Iterator;
 
 public abstract class AbstractSearch {
 

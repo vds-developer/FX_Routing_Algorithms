@@ -1,4 +1,4 @@
-package sample;
+package sample.board;
 
 public class Point {
     private int x;

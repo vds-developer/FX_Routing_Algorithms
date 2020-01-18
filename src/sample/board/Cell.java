@@ -1,4 +1,4 @@
-package sample;
+package sample.board;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;

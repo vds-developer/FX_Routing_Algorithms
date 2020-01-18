@@ -1,4 +1,4 @@
-package sample;
+package sample.board;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

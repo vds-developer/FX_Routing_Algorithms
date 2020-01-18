@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.19627507163323782" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<SplitPane fx:id="mainView" stylesheets="@resource/style.css" dividerPositions="0.19627507163323782" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="600.0">
         <children>
@@ -17,20 +17,21 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Algorithm">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Breadth First" />
+                                <MenuItem mnemonicParsing="false" onAction="#setBreadthFirst" text="Breadth First" />
                             </items>
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Depth First" />
+                                <MenuItem mnemonicParsing="false" onAction="#setDepthFirst" text="Depth First" />
                             </items>
                         </Menu>
                     </menus>
                 </MenuBar>
-            <Button onAction="#randomizeBoard" layoutX="27.0" layoutY="55.0" mnemonicParsing="false" text="Randomize" />
-            <Button onAction="#startSearch" layoutX="130.0" layoutY="55.0" mnemonicParsing="false" text="Start" />
-            <Button onAction="#restartSearch" layoutX="192.0" layoutY="55.0" mnemonicParsing="false" text="restart" />
-            <Button layoutX="300.0" layoutY="55.0" mnemonicParsing="false" text="source" />
-            <Button layoutX="371.0" layoutY="55.0" mnemonicParsing="false" text="destination" />
-            <Button layoutX="472.0" layoutY="55.0" mnemonicParsing="false" text="wall" />
+            <Button layoutX="23.0" layoutY="80.0" mnemonicParsing="false" onAction="#randomizeBoard" text="Randomize" />
+            <Button layoutX="131.0" layoutY="80.0" mnemonicParsing="false" onAction="#startSearch" text="Start" />
+            <Button layoutX="193.0" layoutY="80.0" mnemonicParsing="false" onAction="#restartSearch" text="restart" />
+            <Button layoutX="300.0" layoutY="80.0" mnemonicParsing="false" text="source" />
+            <Button layoutX="371.0" layoutY="80.0" mnemonicParsing="false" text="destination" />
+            <Button layoutX="479.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#setCursorMouse" text="wall" />
+            <Label fx:id="algorithmLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="35.0" prefHeight="35.0" prefWidth="213.0" text="Label" textAlignment="CENTER" />
         </children>
     </AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="600.0">

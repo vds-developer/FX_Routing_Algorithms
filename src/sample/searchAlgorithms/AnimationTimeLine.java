@@ -1,9 +1,11 @@
-package sample;
+package sample.searchAlgorithms;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
+import sample.board.Board;
+import sample.board.Cell;
 import sample.util.CellType;
 
 import java.util.Iterator;

@@ -1,7 +1,6 @@
 package sample.util;
 
-import sample.Board;
-import sample.Point;
+import sample.board.Point;
 
 import java.util.Random;
 

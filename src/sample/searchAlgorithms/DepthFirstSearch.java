@@ -1,7 +1,7 @@
 package sample.searchAlgorithms;
 
-import sample.Board;
-import sample.Point;
+import sample.board.Board;
+import sample.board.Point;
 
 import java.util.LinkedList;
 import java.util.Queue;

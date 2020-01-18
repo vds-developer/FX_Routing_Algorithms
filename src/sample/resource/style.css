@@ -1,0 +1,7 @@
+#grid > *:hover {
+    -fx-background-color: red;
+}
+
+.wall {
+    -fx-background-color: red;
+}
