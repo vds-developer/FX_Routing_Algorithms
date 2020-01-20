@@ -15,19 +15,22 @@ import java.util.List;
 public class AnimationTimeLine {
     private GridPane grid;
     private Board board;
+    private Cell[][] modelBoard;
     private List<Timeline> timelineList;
     private int duration = 100;
 
     public AnimationTimeLine(Board board) {
         this.grid = board.grid;
         this.board = board;
+        this.modelBoard = board.modelBoard;
         this.timelineList = new LinkedList<>();
     }
 
     public void visit(int x, int y) {
         timelineList.add(new Timeline(
                 new KeyFrame(Duration.millis(duration), event -> {
-                    grid.add(new Cell(x, y, CellType.VISITED, board), x, y);
+                    modelBoard[y][x].setFill(CellType.VISITED);
+//                    grid.add(new Cell(x, y, CellType.VISITED, board), x, y);
                 })
         ));
     }

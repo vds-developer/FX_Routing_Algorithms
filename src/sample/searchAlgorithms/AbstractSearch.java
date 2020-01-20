@@ -2,6 +2,7 @@ package sample.searchAlgorithms;
 
 import javafx.scene.layout.GridPane;
 import sample.board.Board;
+import sample.board.Cell;
 import sample.board.Point;
 import sample.util.CellType;
 
@@ -12,7 +13,7 @@ public abstract class AbstractSearch {
     protected Point[] destination;
     protected GridPane grid;
     protected int size;
-    protected CellType[][] modelBoard;
+    protected Cell[][] modelBoard;
     private AnimationTimeLine  animationTimeLine;
 
 
@@ -33,7 +34,7 @@ public abstract class AbstractSearch {
     }
     public void visit(int x, int y) {
         animationTimeLine.visit(x,y);
-        modelBoard[y][x] = CellType.VISITED;
+        modelBoard[y][x].setCellType(CellType.VISITED);
     }
 
     public boolean isValidPoint(Point point) {
@@ -43,7 +44,7 @@ public abstract class AbstractSearch {
     public boolean isValidPoint(int x, int y) {
         return x < size && x >= 0
                 && y < size && y >= 0
-                && modelBoard[y][x] != CellType.WALL;
+                && modelBoard[y][x].getCellType() != CellType.WALL;
     }
 
     public boolean isVisited(Point point) {
@@ -51,7 +52,7 @@ public abstract class AbstractSearch {
     }
 
     public boolean isVisited(int x, int y) {
-        return CellType.VISITED == modelBoard[y][x];
+        return CellType.VISITED == modelBoard[y][x].getCellType();
 //                && modelBoard[y][x] != CellType.SOURCE;
 
     }
@@ -61,7 +62,8 @@ public abstract class AbstractSearch {
     }
 
     public boolean isDestination(int x, int y) {
-        return CellType.DESTINATION == modelBoard[y][x];
+//        return false;
+        return CellType.DESTINATION == modelBoard[y][x].getCellType();
     }
 
     public void autoPlay() {

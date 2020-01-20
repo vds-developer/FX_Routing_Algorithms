@@ -52,6 +52,18 @@ import sample.util.CellType;
             }
         }
 
+       public void setVisit(){
+            this.cellType = CellType.VISITED;
+        }
+
+        public void setCellType(CellType cellType) {
+            this.cellType = cellType;
+        }
+
+        public CellType getCellType() {
+            return this.cellType;
+        }
+
 
         //todo add label to cell
 //        public void setLabel(CellType cellType) {

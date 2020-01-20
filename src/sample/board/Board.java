@@ -20,12 +20,12 @@ public class Board {
     public Point[] sources;
     public Point[] destination;
     // 0 is path, 1 is wall, 2 is source, 3 is destination, 4 is visited
-    public CellType[][] modelBoard;
+    public Cell[][] modelBoard;
 
     public Board( GridPane grid, int n) {
         this.grid = grid;
         this.boardSize = n;
-        this.modelBoard = new CellType[n][n];
+        this.modelBoard = new Cell[n][n];
         grid.setGridLinesVisible(true);
         for (int i = 0; i < n; i++) {
             ColumnConstraints col = new ColumnConstraints();
@@ -50,11 +50,13 @@ public class Board {
         }
 
         public void generateBoard(int numberOfSources, int numberOfDestination, double wallProbability) {
+            clearBoard();
             for (int row = 0; row < boardSize; row++ ) {
                 for (int col = 0; col < boardSize; col++) {
                     CellType type = RandomNumberGenerator.generateWallPath(wallProbability);
-                    grid.add(new Cell(col, row, type, this), col, row);
-                    modelBoard[row][col] = type;
+                    Cell cell = new Cell(col, row, type, this);
+                    grid.add(cell , col, row);
+                    modelBoard[row][col] = cell;
                 }
             }
             //todo can possible land on same destination
@@ -63,19 +65,24 @@ public class Board {
                 Point point  = RandomNumberGenerator.generatePoint(boardSize);
                 sources[i] = point;
                 grid.add(new Cell(point.getX(), point.getY(), CellType.SOURCE, this), point.getX(), point.getY());
-                modelBoard[point.getY()][point.getX()] = CellType.SOURCE;
+                modelBoard[point.getY()][point.getX()].setCellType(CellType.SOURCE);
             }
             destination = new Point[numberOfDestination];
             for (int i = 0; i < numberOfDestination; i++) {
                 Point point  = RandomNumberGenerator.generatePoint(boardSize);
                 destination[i] = point;
                 grid.add(new Cell(point.getX(), point.getY(), CellType.DESTINATION, this), point.getX(), point.getY());
-                modelBoard[point.getY()][point.getX()] = CellType.DESTINATION;
+                modelBoard[point.getY()][point.getX()].setCellType(CellType.DESTINATION);
             }
         }
 
     public void restartBoard() {
         generateBoard();
+    }
+
+    private void clearBoard() {
+        modelBoard = new Cell[boardSize][boardSize];
+
     }
 
 
