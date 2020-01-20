@@ -24,11 +24,6 @@ public class BreadthFirstSearch extends AbstractSearch {
         for (Point p: this.destination) {
             destinationLinkedList.add(p);
         }
-        ///y x
-//        System.out.println("Destination size " + destinationLinkedList.size());
-//        System.out.println("Current list " + pointLinkedList.size());
-//        System.out.println();
-        int[][] neighbors = new int[][] {{-1, -1} , {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0,1}, {1, -1}, {1, 0}, {1, 1}};
         boolean found = false;
         while (!destinationLinkedList.isEmpty() && !pointLinkedList.isEmpty()) {
             Point currentPoint = pointLinkedList.remove();
@@ -37,7 +32,6 @@ public class BreadthFirstSearch extends AbstractSearch {
                 int nextY = currentPoint.getY() + n[1];
                 if (isValidPoint(nextX, nextY) && !isVisited(nextX, nextY)) {
                     if (isDestination(nextX, nextY)) {
-                        System.out.println("to be remove");
                         destinationLinkedList.remove();
                     }
                     pointLinkedList.add(new Point(nextX, nextY));

@@ -22,6 +22,9 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#setDepthFirst" text="Depth First" />
                             </items>
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#setDikstra" text="Dikstra" />
+                            </items>
                         </Menu>
                     </menus>
                 </MenuBar>

@@ -16,6 +16,7 @@ import sample.board.Cell;
 import sample.searchAlgorithms.AbstractSearch;
 import sample.searchAlgorithms.BreadthFirstSearch;
 import sample.searchAlgorithms.DepthFirstSearch;
+import sample.searchAlgorithms.Dikstra;
 import sample.util.CursorType;
 import sample.util.SearchAlgorithm;
 
@@ -77,6 +78,10 @@ public class Controller {
                 search = new BreadthFirstSearch(board);
                 algorithmLabel.setText("Breadth First Search");
                 break;
+            } case Dikstra: {
+                search = new Dikstra(board);
+                algorithmLabel.setText("Dikstra Search");
+                break;
             }
         }
     }
@@ -101,9 +106,11 @@ public class Controller {
         restartSearch(null);
     }
 
+    public void setDikstra(ActionEvent actionEvent) {
+        currentSearchAlgorithm = SearchAlgorithm.Dikstra;
+        restartSearch(null);
+    }
+
     public void setCursorMouse(MouseEvent mouseEvent) {
-//        System.out.print(()).getColumnConstraints().get(0).getPercentWidth();
-        javafx.scene.image.Image wall = new Image("sample/resource/wall.png");
-        grid.setCursor(new ImageCursor(wall, wall.getHeight() / 2 ,wall.getWidth() /2));
     }
 }

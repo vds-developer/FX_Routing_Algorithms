@@ -30,7 +30,6 @@ public class AnimationTimeLine {
         timelineList.add(new Timeline(
                 new KeyFrame(Duration.millis(duration), event -> {
                     modelBoard[y][x].setFill(CellType.VISITED);
-//                    grid.add(new Cell(x, y, CellType.VISITED, board), x, y);
                 })
         ));
     }

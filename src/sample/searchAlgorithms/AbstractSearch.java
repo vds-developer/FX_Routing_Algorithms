@@ -14,8 +14,9 @@ public abstract class AbstractSearch {
     protected GridPane grid;
     protected int size;
     protected Cell[][] modelBoard;
-    private AnimationTimeLine  animationTimeLine;
-
+    private AnimationTimeLine animationTimeLine;
+    //    int[][] neighbors = new int[][] {{-1, -1} , {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0,1}, {1, -1}, {1, 0}, {1, 1}};
+    int[][] neighbors = new int[][]{{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
 
     public abstract void search();
 
@@ -30,10 +31,11 @@ public abstract class AbstractSearch {
     }
 
     public void visit(Point point) {
-       visit(point.getX(), point.getY());
+        visit(point.getX(), point.getY());
     }
+
     public void visit(int x, int y) {
-        animationTimeLine.visit(x,y);
+        animationTimeLine.visit(x, y);
         modelBoard[y][x].setCellType(CellType.VISITED);
     }
 
@@ -53,8 +55,6 @@ public abstract class AbstractSearch {
 
     public boolean isVisited(int x, int y) {
         return CellType.VISITED == modelBoard[y][x].getCellType();
-//                && modelBoard[y][x] != CellType.SOURCE;
-
     }
 
     public boolean isDestination(Point point) {
@@ -62,8 +62,15 @@ public abstract class AbstractSearch {
     }
 
     public boolean isDestination(int x, int y) {
-//        return false;
         return CellType.DESTINATION == modelBoard[y][x].getCellType();
+    }
+
+    public boolean isSource(Point point) {
+        return isSource(point.getX(), point.getY());
+    }
+
+    public boolean isSource(int x, int y) {
+        return CellType.SOURCE == modelBoard[y][x].getCellType();
     }
 
     public void autoPlay() {

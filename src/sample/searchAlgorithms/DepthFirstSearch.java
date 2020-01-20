@@ -23,8 +23,6 @@ public class DepthFirstSearch extends AbstractSearch {
             destinationLinkedList.add(p);
         }
 
-        int[][] neighbours  = new int [][] {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0, 1}, {1, -1}, {1, 0}, {1, -1}};
-
         while (!destinationLinkedList.isEmpty() && !pointStack.isEmpty()) {
             Point currentPoint = pointStack.pop();
             int currentX = currentPoint.getX();
@@ -36,7 +34,7 @@ public class DepthFirstSearch extends AbstractSearch {
             }
             int nextX = -1;
             int nextY = -1;
-            for (int[] pair: neighbours) {
+            for (int[] pair: neighbors) {
                 if(isValidPoint(currentX + pair[0], currentY + pair[1]) &&
                 !isVisited(currentX + pair[0], currentY + pair[1])){
                     nextX = currentX + pair[0];
