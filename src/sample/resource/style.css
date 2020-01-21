@@ -1,7 +1,38 @@
-#grid > *:hover {
-    -fx-background-color: red;
+#grid:cursorWall > *:hover{
+   -fx-fill: black;
 }
 
-.wall {
-    -fx-background-color: red;
+#grid:cursorDestination > *:hover {
+    -fx-fill: red;
+}
+#grid:cursorPath > *:hover {
+    -fx-fill: white;
+}
+
+#grid:cursorSource > *:hover {
+    -fx-fill: green;
+}
+
+/*#grid > *:hover {*/
+/*    -fx-fill: purple;*/
+/*}*/
+
+/*.wall {*/
+/*    -fx-background-color: red;*/
+/*}*/
+
+CustomCell {
+    -fx-background-color: blue;
+}
+
+/*Cell:hover {*/
+/*    -fx-background-color: red;*/
+/*}*/
+
+/*#algorithmLabel:hover {*/
+/*    -fx-background-color: green;*/
+/*}*/
+
+Label:cursorWall {
+    -fx-background-color: green;
 }

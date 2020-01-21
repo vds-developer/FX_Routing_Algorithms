@@ -2,6 +2,7 @@ package sample.board;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -20,12 +21,12 @@ public class Board {
     public Point[] sources;
     public Point[] destination;
     // 0 is path, 1 is wall, 2 is source, 3 is destination, 4 is visited
-    public Cell[][] modelBoard;
+    public CustomCell[][] modelBoard;
 
     public Board( GridPane grid, int n) {
         this.grid = grid;
         this.boardSize = n;
-        this.modelBoard = new Cell[n][n];
+        this.modelBoard = new CustomCell[n][n];
         grid.setGridLinesVisible(true);
         for (int i = 0; i < n; i++) {
             ColumnConstraints col = new ColumnConstraints();
@@ -54,9 +55,10 @@ public class Board {
             for (int row = 0; row < boardSize; row++ ) {
                 for (int col = 0; col < boardSize; col++) {
                     CellType type = RandomNumberGenerator.generateWallPath(wallProbability);
-                    Cell cell = new Cell(col, row, type, this);
-                    grid.add(cell , col, row);
-                    modelBoard[row][col] = cell;
+                    CustomCell customCell = new CustomCell(col, row, type, this);
+                    grid.add(customCell, col, row);
+//                    grid.add(new Label("Text"), col, row);
+                    modelBoard[row][col] = customCell;
                 }
             }
             //todo can possible land on same destination
@@ -64,14 +66,14 @@ public class Board {
             for (int i = 0; i < numberOfSources; i++) {
                 Point point  = RandomNumberGenerator.generatePoint(boardSize);
                 sources[i] = point;
-                grid.add(new Cell(point.getX(), point.getY(), CellType.SOURCE, this), point.getX(), point.getY());
+                grid.add(new CustomCell(point.getX(), point.getY(), CellType.SOURCE, this), point.getX(), point.getY());
                 modelBoard[point.getY()][point.getX()].setCellType(CellType.SOURCE);
             }
             destination = new Point[numberOfDestination];
             for (int i = 0; i < numberOfDestination; i++) {
                 Point point  = RandomNumberGenerator.generatePoint(boardSize);
                 destination[i] = point;
-                grid.add(new Cell(point.getX(), point.getY(), CellType.DESTINATION, this), point.getX(), point.getY());
+                grid.add(new CustomCell(point.getX(), point.getY(), CellType.DESTINATION, this), point.getX(), point.getY());
                 modelBoard[point.getY()][point.getX()].setCellType(CellType.DESTINATION);
             }
         }
@@ -81,7 +83,7 @@ public class Board {
     }
 
     private void clearBoard() {
-        modelBoard = new Cell[boardSize][boardSize];
+        modelBoard = new CustomCell[boardSize][boardSize];
 
     }
 

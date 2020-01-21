@@ -1,27 +1,21 @@
 package sample;
 
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.SplitPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import sample.board.Board;
-import sample.board.Cell;
 import sample.searchAlgorithms.AbstractSearch;
 import sample.searchAlgorithms.BreadthFirstSearch;
 import sample.searchAlgorithms.DepthFirstSearch;
 import sample.searchAlgorithms.Dikstra;
 import sample.util.CursorType;
 import sample.util.SearchAlgorithm;
-
-import javax.swing.*;
-import java.io.FileInputStream;
 
 public class Controller {
 
@@ -45,7 +39,7 @@ public class Controller {
     public void initialize(){
         board = new Board(grid, defaultBoardSize);
         currentSearchAlgorithm = SearchAlgorithm.BreadthFirst;
-        cursorType = CursorType.NORMAL;
+        cursorType = CursorType.PATH;
         setSearchAlgorithm(currentSearchAlgorithm);
         ObservableList<Node> child = grid.getChildren();
         for(Node node : child) {
@@ -80,17 +74,46 @@ public class Controller {
                 break;
             } case Dikstra: {
                 search = new Dikstra(board);
-                algorithmLabel.setText("Dikstra Search");
+                algorithmLabel.setText("Dijkstra Search");
                 break;
             }
         }
     }
 
+    private static PseudoClass wall = PseudoClass.getPseudoClass("cursorWall");
     public void setCursorType(CursorType cursorType) {
         this.cursorType = cursorType;
-        switch (this.cursorType) {
-            case PATH: {
-//                mainView.setCursor();
+//        grid.hoverProperty().addListener((observable, wasHover, isNowHover) -> {
+//            grid.pseudoClassStateChanged(getHoverClass(), isNowHover);
+//        });
+        setCursor();
+//        grid.getPseudoClassStates().clear();
+        grid.pseudoClassStateChanged(getHoverClass(), true);
+//        grid.hoverProperty().addListener((observable, wasHover, isNowHover) -> {
+//            grid.pseudoClassStateChanged(getHoverClass(), isNowHover);
+//            System.out.println("Hovering");
+//        });
+    }
+
+    private PseudoClass getHoverClass () {
+        switch(cursorType) {
+            case DESTINATION: {
+                return PseudoClass.getPseudoClass("cursorDestination");
+            } case PATH: {
+                return PseudoClass.getPseudoClass("cursorPath");
+            } case WALL: {
+                return PseudoClass.getPseudoClass("cursorWall");
+            } case SOURCE: {
+                return PseudoClass.getPseudoClass("cursorSource");
+            }
+        }
+        return null;
+    }
+
+    public void setCursor() {
+        for (int row = 0; row < defaultBoardSize; row++){
+            for (int col = 0; col < defaultBoardSize; col++) {
+                board.modelBoard[row][col].setCursorType(this.cursorType);
             }
         }
     }
@@ -106,11 +129,20 @@ public class Controller {
         restartSearch(null);
     }
 
-    public void setDikstra(ActionEvent actionEvent) {
+    public void setDijkstra(ActionEvent actionEvent) {
         currentSearchAlgorithm = SearchAlgorithm.Dikstra;
         restartSearch(null);
     }
 
-    public void setCursorMouse(MouseEvent mouseEvent) {
+    public void addWall(MouseEvent mouseEvent) {
+        setCursorType(CursorType.WALL);
+    }
+
+    public void addDestination(MouseEvent mouseEvent) {
+        setCursorType(CursorType.DESTINATION);
+    }
+
+    public void addSource(MouseEvent mouseEvent) {
+        setCursorType(CursorType.SOURCE);
     }
 }

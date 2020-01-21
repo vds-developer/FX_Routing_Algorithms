@@ -5,7 +5,7 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import sample.board.Board;
-import sample.board.Cell;
+import sample.board.CustomCell;
 import sample.util.CellType;
 
 import java.util.Iterator;
@@ -15,7 +15,7 @@ import java.util.List;
 public class AnimationTimeLine {
     private GridPane grid;
     private Board board;
-    private Cell[][] modelBoard;
+    private CustomCell[][] modelBoard;
     private List<Timeline> timelineList;
     private int duration = 100;
 

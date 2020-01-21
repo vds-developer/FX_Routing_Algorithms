@@ -23,7 +23,7 @@
                                 <MenuItem mnemonicParsing="false" onAction="#setDepthFirst" text="Depth First" />
                             </items>
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#setDikstra" text="Dikstra" />
+                                <MenuItem mnemonicParsing="false" onAction="#setDijkstra" text="Dikstra" />
                             </items>
                         </Menu>
                     </menus>
@@ -31,9 +31,9 @@
             <Button layoutX="23.0" layoutY="80.0" mnemonicParsing="false" onAction="#randomizeBoard" text="Randomize" />
             <Button layoutX="131.0" layoutY="80.0" mnemonicParsing="false" onAction="#startSearch" text="Start" />
             <Button layoutX="193.0" layoutY="80.0" mnemonicParsing="false" onAction="#restartSearch" text="restart" />
-            <Button layoutX="300.0" layoutY="80.0" mnemonicParsing="false" text="source" />
-            <Button layoutX="371.0" layoutY="80.0" mnemonicParsing="false" text="destination" />
-            <Button layoutX="479.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#setCursorMouse" text="wall" />
+            <Button layoutX="300.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addSource" text="source" />
+            <Button layoutX="371.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addDestination" text="destination" />
+            <Button layoutX="479.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addWall" text="wall" />
             <Label fx:id="algorithmLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="35.0" prefHeight="35.0" prefWidth="213.0" text="Label" textAlignment="CENTER" />
         </children>
     </AnchorPane>

@@ -2,7 +2,7 @@ package sample.searchAlgorithms;
 
 import javafx.scene.layout.GridPane;
 import sample.board.Board;
-import sample.board.Cell;
+import sample.board.CustomCell;
 import sample.board.Point;
 import sample.util.CellType;
 
@@ -13,7 +13,7 @@ public abstract class AbstractSearch {
     protected Point[] destination;
     protected GridPane grid;
     protected int size;
-    protected Cell[][] modelBoard;
+    protected CustomCell[][] modelBoard;
     private AnimationTimeLine animationTimeLine;
     //    int[][] neighbors = new int[][] {{-1, -1} , {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0,1}, {1, -1}, {1, 0}, {1, 1}};
     int[][] neighbors = new int[][]{{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
