@@ -1,5 +1,8 @@
 package sample.board;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,7 +20,7 @@ public class CustomCell extends Rectangle {
 
     private String pathColor = "white";
     private String wallColor = "black";
-    private String sourceColor = "green";
+    private String sourceColor = "blue";
     private String destinationColor = "red";
     private String visitedColor = "green";
     @FXML
@@ -81,31 +84,60 @@ public class CustomCell extends Rectangle {
 
     public void setCursorType(CursorType cursorType) {
         this.cursorType = cursorType;
+        this.hoverProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(compareCellTypeCursorType()) newValue = false;
+                pseudoClassStateChanged(getHoverClass(), newValue);
+            }
+        });
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                setFill(cursorType);
+                if(compareCellTypeCursorType()) setFill(CellType.PATH);
+                else setFill(cursorType);
+                System.out.println(cursorType);
                 System.out.println("click");
+                event.consume();
             }
         });
+    }
+
+    private boolean compareCellTypeCursorType () {
+        return cellType.toString() == cursorType.toString();
+    }
+
+    private PseudoClass getHoverClass () {
+        switch(cursorType) {
+            case DESTINATION: {
+                return PseudoClass.getPseudoClass("cursorDestination");
+            } case PATH: {
+                return PseudoClass.getPseudoClass("cursorPath");
+            } case WALL: {
+                return PseudoClass.getPseudoClass("cursorWall");
+            } case SOURCE: {
+                return PseudoClass.getPseudoClass("cursorSource");
+            }
+        }
+        return null;
     }
 
     private void setFill(CursorType cursorType) {
         switch (cursorType) {
             case PATH: {
-                this.setFill(Paint.valueOf(pathColor));
+                setFill(CellType.PATH);
                 break;
             }
             case WALL: {
-                this.setFill(Paint.valueOf(wallColor));
+                setFill(CellType.WALL);
                 break;
             }
             case SOURCE: {
-                this.setFill(Paint.valueOf(sourceColor));
+                setFill(CellType.SOURCE);
                 break;
             }
             case DESTINATION: {
-                this.setFill(Paint.valueOf(destinationColor));
+                setFill(CellType.DESTINATION);
                 break;
             }
         }

@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import sample.searchAlgorithms.AbstractSearch;
 import sample.searchAlgorithms.BreadthFirstSearch;
 import sample.searchAlgorithms.DepthFirstSearch;
 import sample.searchAlgorithms.Dikstra;
+import sample.util.CellType;
 import sample.util.CursorType;
 import sample.util.SearchAlgorithm;
 
@@ -83,16 +86,14 @@ public class Controller {
     private static PseudoClass wall = PseudoClass.getPseudoClass("cursorWall");
     public void setCursorType(CursorType cursorType) {
         this.cursorType = cursorType;
-//        grid.hoverProperty().addListener((observable, wasHover, isNowHover) -> {
-//            grid.pseudoClassStateChanged(getHoverClass(), isNowHover);
-//        });
         setCursor();
-//        grid.getPseudoClassStates().clear();
-        grid.pseudoClassStateChanged(getHoverClass(), true);
-//        grid.hoverProperty().addListener((observable, wasHover, isNowHover) -> {
-//            grid.pseudoClassStateChanged(getHoverClass(), isNowHover);
-//            System.out.println("Hovering");
+//        grid.hoverProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                grid.pseudoClassStateChanged(getHoverClass(), newValue);
+//            }
 //        });
+//        grid.pseudoClassStateChanged(getHoverClass(), true);
     }
 
     private PseudoClass getHoverClass () {
@@ -114,6 +115,7 @@ public class Controller {
         for (int row = 0; row < defaultBoardSize; row++){
             for (int col = 0; col < defaultBoardSize; col++) {
                 board.modelBoard[row][col].setCursorType(this.cursorType);
+//                board.modelBoard[row][col].setFill(CellType.SOURCE);
             }
         }
     }
