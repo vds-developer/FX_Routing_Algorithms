@@ -25,6 +25,9 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#setDijkstra" text="Dikstra" />
                             </items>
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#setGreedy" text="Greedy" />
+                            </items>
                         </Menu>
                     </menus>
                 </MenuBar>

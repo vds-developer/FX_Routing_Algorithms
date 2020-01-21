@@ -13,7 +13,7 @@ public abstract class AbstractSearch {
     protected Point[] destination;
     protected GridPane grid;
     protected int size;
-    protected CustomCell[][] modelBoard;
+    private CustomCell[][] modelBoard;
     private AnimationTimeLine animationTimeLine;
     //    int[][] neighbors = new int[][] {{-1, -1} , {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0,1}, {1, -1}, {1, 0}, {1, 1}};
     int[][] neighbors = new int[][]{{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
@@ -55,6 +55,14 @@ public abstract class AbstractSearch {
 
     public boolean isVisited(int x, int y) {
         return CellType.VISITED == modelBoard[y][x].getCellType();
+    }
+
+    public boolean isValidAndNotVisited(Point point) {
+        return isValidPoint(point) && !isVisited(point);
+    }
+
+    public boolean isValidAndNotVisited(int x, int y) {
+        return isValidPoint(x, y) && !isVisited(x, y);
     }
 
     public boolean isDestination(Point point) {

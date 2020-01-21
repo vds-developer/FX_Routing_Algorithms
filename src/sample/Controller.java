@@ -12,10 +12,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import sample.board.Board;
-import sample.searchAlgorithms.AbstractSearch;
-import sample.searchAlgorithms.BreadthFirstSearch;
-import sample.searchAlgorithms.DepthFirstSearch;
-import sample.searchAlgorithms.Dikstra;
+import sample.searchAlgorithms.*;
 import sample.util.CellType;
 import sample.util.CursorType;
 import sample.util.SearchAlgorithm;
@@ -79,6 +76,10 @@ public class Controller {
                 search = new Dikstra(board);
                 algorithmLabel.setText("Dijkstra Search");
                 break;
+            } case Greedy: {
+                search = new GreedySearch(board);
+                algorithmLabel.setText("Greedy Search");
+                break;
             }
         }
     }
@@ -136,6 +137,11 @@ public class Controller {
         restartSearch(null);
     }
 
+    public void setGreedy(ActionEvent actionEvent) {
+        currentSearchAlgorithm = SearchAlgorithm.Greedy;
+        restartSearch(null);
+    }
+
     public void addWall(MouseEvent mouseEvent) {
         setCursorType(CursorType.WALL);
     }
@@ -147,4 +153,6 @@ public class Controller {
     public void addSource(MouseEvent mouseEvent) {
         setCursorType(CursorType.SOURCE);
     }
+
+
 }
